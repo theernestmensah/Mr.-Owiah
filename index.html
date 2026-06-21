@@ -17,7 +17,26 @@
     />
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body class="home-page">
+  <body class="home-page intro-active">
+    <div class="envelope-intro" id="envelopeIntro" role="dialog" aria-modal="true" aria-labelledby="envelopeIntroTitle">
+      <div class="envelope-intro__halo" aria-hidden="true"></div>
+      <p class="envelope-intro__date">Father’s Day · 2026</p>
+      <h2 class="sr-only" id="envelopeIntroTitle">A Father’s Day letter for Mr. Owiah</h2>
+      <button class="envelope" id="openEnvelope" type="button" aria-label="Open the Father’s Day letter">
+        <span class="envelope__back" aria-hidden="true"></span>
+        <span class="envelope__letter" aria-hidden="true">
+          <span class="envelope__to">For</span>
+          <span class="envelope__name">Mr. Owiah</span>
+          <span class="envelope__from">With all our love</span>
+        </span>
+        <span class="envelope__front" aria-hidden="true"></span>
+        <span class="envelope__flap" aria-hidden="true"></span>
+        <span class="envelope__seal" aria-hidden="true">♥</span>
+      </button>
+      <p class="envelope-intro__hint">Click the envelope to begin</p>
+    </div>
+    <noscript><style>.envelope-intro{display:none}.intro-active{overflow:auto}</style></noscript>
+
     <div class="page-glow page-glow--one" aria-hidden="true"></div>
     <div class="page-glow page-glow--two" aria-hidden="true"></div>
 
@@ -27,7 +46,6 @@
       </nav>
 
       <div class="hero__content reveal is-visible">
-        <p class="eyebrow">A celebration of an extraordinary dad</p>
         <h1>Happy Father’s Day,<br /><em>Mr. Owiah.</em></h1>
         <p class="hero__intro">
           Today, we celebrate your love, your guidance, and the quiet strength
@@ -59,11 +77,10 @@
       <div class="hero__year" aria-hidden="true">2026</div>
     </header>
 
-    <main>
+    <main id="mainContent" tabindex="-1">
       <section class="gallery-portal" id="gallery-preview" aria-labelledby="galleryPortalTitle">
         <div class="gallery-portal__arc" id="galleryArc" aria-hidden="true"></div>
         <div class="gallery-portal__content reveal">
-          <p class="eyebrow">The Owiah family archive</p>
           <h2 id="galleryPortalTitle">Every chapter<br /><em>lives here.</em></h2>
           <p class="gallery-portal__intro">
             Photographs, films, and the little moments that became a family legacy.
@@ -79,7 +96,6 @@
       <section class="portrait-section archive" id="archive" aria-label="The Owiah family archive">
         <header class="archive__header reveal">
           <div>
-            <p class="eyebrow">The Owiah family archive</p>
             <h2>A life held in<br /><em>the people he loves.</em></h2>
           </div>
           <div class="archive__index" aria-label="Archive information">
@@ -171,7 +187,6 @@
 
       <section class="messages" id="messages">
         <div class="messages__heading section-heading reveal">
-          <p class="eyebrow eyebrow--light">From our hearts to yours</p>
           <h2>Five letters for the man<br /><em>who means everything.</em></h2>
         </div>
 
@@ -305,7 +320,6 @@
 
       <section class="blessing">
         <div class="blessing__ornament" aria-hidden="true">✦</div>
-        <p class="eyebrow reveal">Our prayer for you</p>
         <blockquote class="reveal">
           “May your days be filled with joy, and your life be a fulfilment of
           the Lord’s purpose for you.”

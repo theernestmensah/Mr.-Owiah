@@ -1,6 +1,34 @@
 // The homepage keeps only the arc preview; the complete archive lives in gallery.html.
 document.querySelector(".home-page .archive")?.remove();
 
+const envelopeIntro = document.querySelector("#envelopeIntro");
+const openEnvelope = document.querySelector("#openEnvelope");
+
+if (envelopeIntro && openEnvelope) {
+  const reducedIntroMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let envelopeOpened = false;
+
+  window.setTimeout(() => openEnvelope.focus({ preventScroll: true }), 120);
+
+  openEnvelope.addEventListener("click", () => {
+    if (envelopeOpened) return;
+    envelopeOpened = true;
+    openEnvelope.disabled = true;
+    envelopeIntro.classList.add("is-opening");
+
+    window.setTimeout(() => {
+      envelopeIntro.classList.add("is-leaving");
+
+      window.setTimeout(() => {
+        envelopeIntro.hidden = true;
+        envelopeIntro.setAttribute("aria-hidden", "true");
+        document.body.classList.remove("intro-active");
+        document.querySelector("#mainContent")?.focus({ preventScroll: true });
+      }, reducedIntroMotion ? 40 : 650);
+    }, reducedIntroMotion ? 80 : 1750);
+  });
+}
+
 const revealElements = document.querySelectorAll(".reveal:not(.is-visible)");
 
 if ("IntersectionObserver" in window) {
