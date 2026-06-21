@@ -11,11 +11,8 @@ const musicMuteIcon = document.querySelector("#musicMuteIcon");
 const musicProgress = document.querySelector("#musicProgress");
 const musicCurrentTime = document.querySelector("#musicCurrentTime");
 const musicDuration = document.querySelector("#musicDuration");
-const youtubePlayerFrame = document.querySelector("#youtubePlayer");
-
-let gratitudePlayer;
-let musicReady = false;
-let musicShouldPlay = false;
+const soundtrackAudio = document.querySelector("#soundtrackAudio");
+const musicStateKey = "owiah-gratitude-state";
 
 const formatMusicTime = (seconds) => {
   const safeSeconds = Number.isFinite(seconds) ? Math.max(0, seconds) : 0;
@@ -41,21 +38,18 @@ const showMusicBar = () => {
 };
 
 function startSoundtrack() {
-  musicShouldPlay = true;
   showMusicBar();
-
-  if (!musicReady || !gratitudePlayer) return;
-  gratitudePlayer.unMute();
-  gratitudePlayer.setVolume(70);
-  gratitudePlayer.playVideo();
+  if (!soundtrackAudio) return;
+  soundtrackAudio.muted = false;
+  soundtrackAudio.volume = 0.7;
+  soundtrackAudio.play().catch(() => setMusicPlayingUI(false));
   setMusicMutedUI(false);
-  setMusicPlayingUI(true);
 }
 
 const updateMusicProgress = () => {
-  if (!musicReady || !gratitudePlayer) return;
-  const current = gratitudePlayer.getCurrentTime() || 0;
-  const duration = gratitudePlayer.getDuration() || 170;
+  if (!soundtrackAudio) return;
+  const current = soundtrackAudio.currentTime || 0;
+  const duration = Number.isFinite(soundtrackAudio.duration) ? soundtrackAudio.duration : 170;
 
   if (musicProgress && document.activeElement !== musicProgress) {
     musicProgress.value = String((current / duration) * 100);
@@ -64,64 +58,98 @@ const updateMusicProgress = () => {
   if (musicDuration) musicDuration.textContent = formatMusicTime(duration);
 };
 
-if (youtubePlayerFrame) {
-  window.onYouTubeIframeAPIReady = () => {
-    gratitudePlayer = new window.YT.Player("youtubePlayer", {
-      events: {
-        onReady: (event) => {
-          musicReady = true;
-          event.target.mute();
-          event.target.playVideo();
-          setMusicMutedUI(true);
-          updateMusicProgress();
-          window.setInterval(updateMusicProgress, 500);
+const readStoredMusicState = () => {
+  try {
+    return JSON.parse(window.sessionStorage.getItem(musicStateKey) || "{}");
+  } catch {
+    return {};
+  }
+};
 
-          if (musicShouldPlay) startSoundtrack();
-        },
-        onStateChange: (event) => {
-          setMusicPlayingUI(event.data === window.YT.PlayerState.PLAYING);
-        },
-      },
-    });
+const saveMusicState = () => {
+  if (!soundtrackAudio) return;
+  try {
+    window.sessionStorage.setItem(
+      musicStateKey,
+      JSON.stringify({ time: soundtrackAudio.currentTime || 0, playing: !soundtrackAudio.paused })
+    );
+  } catch {
+    // Query parameters provide the cross-page fallback when file storage is restricted.
+  }
+};
+
+if (soundtrackAudio) {
+  soundtrackAudio.volume = 0.7;
+
+  const restoreMusicState = () => {
+    const params = new URLSearchParams(window.location.search);
+    const stored = readStoredMusicState();
+    const queryTime = Number(params.get("musicTime"));
+    const resumeTime = Number.isFinite(queryTime) && queryTime > 0 ? queryTime : Number(stored.time) || 0;
+    const resumePlaying = params.get("musicPlaying") === "1" || stored.playing === true;
+
+    if (resumeTime > 0 && Number.isFinite(soundtrackAudio.duration)) {
+      soundtrackAudio.currentTime = Math.min(resumeTime, Math.max(0, soundtrackAudio.duration - 0.25));
+    }
+    updateMusicProgress();
+
+    if (document.body.classList.contains("gallery-page")) {
+      showMusicBar();
+      if (resumePlaying) {
+        soundtrackAudio.play().catch(() => setMusicPlayingUI(false));
+      }
+    }
   };
 
-  const youtubeApi = document.createElement("script");
-  youtubeApi.src = "https://www.youtube.com/iframe_api";
-  youtubeApi.async = true;
-  document.head.appendChild(youtubeApi);
+  if (soundtrackAudio.readyState >= 1) restoreMusicState();
+  else soundtrackAudio.addEventListener("loadedmetadata", restoreMusicState, { once: true });
+
+  soundtrackAudio.addEventListener("play", () => {
+    document.body.classList.add("soundtrack-playing");
+    setMusicPlayingUI(true);
+    saveMusicState();
+  });
+  soundtrackAudio.addEventListener("pause", () => {
+    document.body.classList.remove("soundtrack-playing");
+    setMusicPlayingUI(false);
+    saveMusicState();
+  });
+  soundtrackAudio.addEventListener("volumechange", () => setMusicMutedUI(soundtrackAudio.muted));
+  soundtrackAudio.addEventListener("timeupdate", updateMusicProgress);
+  soundtrackAudio.addEventListener("durationchange", updateMusicProgress);
+  window.addEventListener("beforeunload", saveMusicState);
+
+  document.querySelectorAll('a[href="gallery.html"], a[href^="index.html"]').forEach((link) => {
+    link.addEventListener("click", () => {
+      saveMusicState();
+      const destination = new URL(link.href, window.location.href);
+      destination.searchParams.set("musicTime", String(soundtrackAudio.currentTime || 0));
+      destination.searchParams.set("musicPlaying", soundtrackAudio.paused ? "0" : "1");
+      link.href = destination.href;
+    });
+  });
 }
 
 musicToggle?.addEventListener("click", () => {
   showMusicBar();
-  if (!musicReady || !gratitudePlayer) {
-    musicShouldPlay = true;
-    return;
-  }
-
-  const isPlaying = gratitudePlayer.getPlayerState() === window.YT.PlayerState.PLAYING;
-  if (isPlaying) {
-    gratitudePlayer.pauseVideo();
-    musicShouldPlay = false;
+  if (!soundtrackAudio) return;
+  if (!soundtrackAudio.paused) {
+    soundtrackAudio.pause();
   } else {
-    gratitudePlayer.unMute();
-    gratitudePlayer.playVideo();
-    musicShouldPlay = true;
+    soundtrackAudio.muted = false;
+    soundtrackAudio.play().catch(() => setMusicPlayingUI(false));
     setMusicMutedUI(false);
   }
 });
 
 musicMute?.addEventListener("click", () => {
-  if (!musicReady || !gratitudePlayer) return;
-  const isMuted = gratitudePlayer.isMuted();
-  if (isMuted) gratitudePlayer.unMute();
-  else gratitudePlayer.mute();
-  setMusicMutedUI(!isMuted);
+  if (!soundtrackAudio) return;
+  soundtrackAudio.muted = !soundtrackAudio.muted;
 });
 
 musicProgress?.addEventListener("input", () => {
-  if (!musicReady || !gratitudePlayer) return;
-  const duration = gratitudePlayer.getDuration() || 0;
-  gratitudePlayer.seekTo((Number(musicProgress.value) / 100) * duration, true);
+  if (!soundtrackAudio || !Number.isFinite(soundtrackAudio.duration)) return;
+  soundtrackAudio.currentTime = (Number(musicProgress.value) / 100) * soundtrackAudio.duration;
   updateMusicProgress();
 });
 

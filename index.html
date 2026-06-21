@@ -69,6 +69,7 @@
         <svg class="feather-icon" aria-hidden="true"><use id="musicMuteIcon" href="#icon-volume-x"></use></svg>
       </button>
     </aside>
+    <audio id="soundtrackAudio" src="asake-asake-gratitude-official-visualizer.m4a" preload="auto" autoplay loop></audio>
 
     <div class="page-glow page-glow--one" aria-hidden="true"></div>
     <div class="page-glow page-glow--two" aria-hidden="true"></div>
@@ -359,24 +360,17 @@
           <p class="soundtrack__note">
             A song for the love, the lessons, and every blessing worth giving thanks for.
           </p>
-          <a class="soundtrack__link" href="https://www.youtube.com/watch?v=Ofm9CrqhR88" target="_blank" rel="noopener noreferrer">
-            Open on YouTube
-            <svg class="feather-icon" aria-hidden="true"><use href="#icon-external-link"></use></svg>
-          </a>
+          <p class="soundtrack__instruction">Playing throughout the tribute</p>
         </div>
         <div class="soundtrack__media reveal">
-          <div class="soundtrack__player">
-            <iframe
-              id="youtubePlayer"
-              src="https://www.youtube.com/embed/Ofm9CrqhR88?enablejsapi=1&amp;autoplay=1&amp;mute=1&amp;playsinline=1&amp;rel=0&amp;modestbranding=1"
-              title="Asake — Gratitude (Official Visualizer)"
-              loading="lazy"
-              referrerpolicy="strict-origin-when-cross-origin"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen
-            ></iframe>
+          <div class="soundtrack__player soundtrack__player--audio" aria-hidden="true">
+            <div class="soundtrack__monogram"><svg class="feather-icon"><use href="#icon-music"></use></svg></div>
+            <div class="soundtrack__wave">
+              <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+            </div>
+            <p>GRATITUDE <span>ASAKE</span></p>
           </div>
-          <p>Official visualizer <span>02:50</span></p>
+          <p>Father’s Day soundtrack <span>02:50</span></p>
         </div>
       </section>
 
