@@ -1625,6 +1625,15 @@ h2 em {
   transition: transform 600ms ease;
 }
 
+.message-card__photo--ebo {
+  background: #102f27;
+}
+
+.message-card__photo--ebo img {
+  object-fit: contain;
+  object-position: center;
+}
+
 .message-card:hover .message-card__photo img {
   transform: scale(1.025);
 }
@@ -2178,6 +2187,10 @@ h2 em {
 
   .message-card__photo--faces img {
     object-position: center top;
+  }
+
+  .message-card__photo--ebo img {
+    object-position: center;
   }
 
   .message-card__number {
