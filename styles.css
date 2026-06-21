@@ -225,6 +225,11 @@ body.intro-active {
   transition: opacity 240ms ease 120ms, transform 300ms ease 100ms;
 }
 
+.envelope__seal .feather-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
 .envelope-intro.is-opening .envelope__flap {
   transform: rotateX(180deg);
 }
@@ -266,6 +271,24 @@ body.intro-active {
 
 a {
   color: inherit;
+}
+
+.feather-sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.feather-icon {
+  width: 1.1em;
+  height: 1.1em;
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .page-glow {
@@ -458,10 +481,11 @@ h2 em {
   transition: background 200ms ease, color 200ms ease, transform 200ms ease;
 }
 
-.button span {
+.button > .feather-icon {
   display: grid;
   width: 2rem;
   height: 2rem;
+  padding: 0.5rem;
   place-items: center;
   border-radius: 50%;
   color: var(--forest-deep);
@@ -475,8 +499,8 @@ h2 em {
   transform: translateY(-2px);
 }
 
-.button:hover span,
-.button:focus-visible span {
+.button:hover > .feather-icon,
+.button:focus-visible > .feather-icon {
   background: var(--white);
 }
 
@@ -513,6 +537,12 @@ h2 em {
   font-size: clamp(1.25rem, 2.5vw, 2rem);
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(4px);
+}
+
+.hero__seal > span .feather-icon {
+  width: 2rem;
+  height: 2rem;
+  color: #e88f8f;
 }
 
 .hero__year {
@@ -992,10 +1022,10 @@ h2 em {
   transition: color 220ms ease, padding 220ms ease;
 }
 
-.gallery-portal__link span:last-child {
+.gallery-portal__link > .feather-icon {
+  width: 1.25rem;
+  height: 1.25rem;
   color: #976a22;
-  font-size: 1.5rem;
-  line-height: 1;
   transition: transform 220ms ease;
 }
 
@@ -1006,8 +1036,8 @@ h2 em {
   color: #976a22;
 }
 
-.gallery-portal__link:hover span:last-child,
-.gallery-portal__link:focus-visible span:last-child {
+.gallery-portal__link:hover > .feather-icon,
+.gallery-portal__link:focus-visible > .feather-icon {
   transform: translate(0.2rem, -0.2rem);
 }
 
@@ -1331,7 +1361,7 @@ h2 em {
   z-index: 2;
   right: 0;
   bottom: 0;
-  content: "OPEN ↗";
+  content: "OPEN";
   padding: 0.65rem 0.75rem;
   color: var(--gold-light);
   background: rgba(8, 30, 25, 0.94);
@@ -1393,12 +1423,13 @@ h2 em {
   cursor: pointer;
 }
 
-.archive-toggle span:last-child {
-  font-size: 1.4rem;
+.archive-toggle > .feather-icon {
+  width: 1.25rem;
+  height: 1.25rem;
   transition: transform 300ms ease;
 }
 
-.archive-toggle[aria-expanded="true"] span:last-child {
+.archive-toggle[aria-expanded="true"] > .feather-icon {
   transform: rotate(180deg);
 }
 
@@ -1702,8 +1733,10 @@ h2 em {
 .blessing__ornament {
   position: absolute;
   color: rgba(168, 118, 40, 0.08);
-  font-size: clamp(18rem, 48vw, 42rem);
+  width: clamp(18rem, 48vw, 42rem);
+  height: auto;
   line-height: 1;
+  stroke-width: 0.3;
   transform: translateY(-3%);
   user-select: none;
 }
@@ -1769,9 +1802,10 @@ h2 em {
   transform: scale(0.98);
 }
 
-.heart-button span {
+.heart-button .feather-icon {
+  width: 1rem;
+  height: 1rem;
   color: #f19b91;
-  font-size: 1rem;
 }
 
 .site-footer {
@@ -1790,6 +1824,9 @@ h2 em {
 }
 
 .site-footer a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
   color: var(--gold-light);
   text-decoration: none;
 }
@@ -1805,9 +1842,15 @@ h2 em {
 .floating-heart {
   position: absolute;
   bottom: -3rem;
+  width: var(--heart-size);
+  height: var(--heart-size);
   animation: float-heart var(--duration) cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
   color: var(--heart-color);
-  font-size: var(--heart-size);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
   filter: drop-shadow(0 0.25rem 0.2rem rgba(0, 0, 0, 0.08));
 }
 
@@ -2127,6 +2170,14 @@ h2 em {
 
   .message-card__photo img {
     min-height: 0;
+  }
+
+  .message-card__photo--faces {
+    aspect-ratio: 4 / 5;
+  }
+
+  .message-card__photo--faces img {
+    object-position: center top;
   }
 
   .message-card__number {

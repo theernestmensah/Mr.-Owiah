@@ -230,9 +230,12 @@ heartButton?.addEventListener("click", () => {
 
   for (let index = 0; index < totalHearts; index += 1) {
     window.setTimeout(() => {
-      const heart = document.createElement("span");
-      heart.className = "floating-heart";
-      heart.textContent = index % 4 === 0 ? "♥" : "❤";
+      const heart = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      const heartPath = document.createElementNS("http://www.w3.org/2000/svg", "use");
+      heart.setAttribute("class", "floating-heart");
+      heart.setAttribute("viewBox", "0 0 24 24");
+      heartPath.setAttribute("href", "#icon-heart");
+      heart.appendChild(heartPath);
       heart.style.left = `${8 + Math.random() * 84}%`;
       heart.style.setProperty("--heart-size", `${0.85 + Math.random() * 1.3}rem`);
       heart.style.setProperty("--heart-color", colors[index % colors.length]);

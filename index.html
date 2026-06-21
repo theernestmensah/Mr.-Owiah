@@ -18,6 +18,16 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body class="home-page intro-active">
+    <svg class="feather-sprite" aria-hidden="true">
+      <symbol id="icon-heart" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"></path></symbol>
+      <symbol id="icon-arrow-down" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></symbol>
+      <symbol id="icon-arrow-up" viewBox="0 0 24 24"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></symbol>
+      <symbol id="icon-arrow-left" viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></symbol>
+      <symbol id="icon-external-link" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></symbol>
+      <symbol id="icon-corner-down-right" viewBox="0 0 24 24"><polyline points="15 10 20 15 15 20"></polyline><path d="M4 4v7a4 4 0 0 0 4 4h12"></path></symbol>
+      <symbol id="icon-x" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></symbol>
+      <symbol id="icon-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></symbol>
+    </svg>
     <div class="envelope-intro" id="envelopeIntro" role="dialog" aria-modal="true" aria-labelledby="envelopeIntroTitle">
       <div class="envelope-intro__halo" aria-hidden="true"></div>
       <p class="envelope-intro__date">Father’s Day · 2026</p>
@@ -31,7 +41,7 @@
         </span>
         <span class="envelope__front" aria-hidden="true"></span>
         <span class="envelope__flap" aria-hidden="true"></span>
-        <span class="envelope__seal" aria-hidden="true">♥</span>
+        <span class="envelope__seal" aria-hidden="true"><svg class="feather-icon"><use href="#icon-heart"></use></svg></span>
       </button>
       <p class="envelope-intro__hint">Click the envelope to begin</p>
     </div>
@@ -53,7 +63,7 @@
         </p>
         <a class="button" href="#messages">
           Read our messages
-          <span aria-hidden="true">↓</span>
+          <svg class="feather-icon" aria-hidden="true"><use href="#icon-arrow-down"></use></svg>
         </a>
       </div>
 
@@ -71,7 +81,7 @@
             </textPath>
           </text>
         </svg>
-        <span>❤️</span>
+        <span><svg class="feather-icon" aria-hidden="true"><use href="#icon-heart"></use></svg></span>
       </div>
 
       <div class="hero__year" aria-hidden="true">2026</div>
@@ -87,7 +97,7 @@
           </p>
           <a class="gallery-portal__link" href="gallery.html">
             <span>Enter the gallery</span>
-            <span aria-hidden="true">↗</span>
+            <svg class="feather-icon" aria-hidden="true"><use href="#icon-external-link"></use></svg>
           </a>
           <p class="gallery-portal__meta">44 photographs · 03 films · one extraordinary father</p>
         </div>
@@ -150,7 +160,7 @@
           <div class="archive-grid" id="memoryReel" aria-label="More family photographs"></div>
           <button class="archive-toggle" id="archiveToggle" type="button" aria-expanded="false">
             <span>Enter the full archive</span>
-            <span aria-hidden="true">↘</span>
+            <svg class="feather-icon" aria-hidden="true"><use href="#icon-corner-down-right"></use></svg>
           </button>
         </div>
 
@@ -192,7 +202,7 @@
 
         <div class="message-list">
           <article class="message-card reveal">
-            <figure class="message-card__photo">
+            <figure class="message-card__photo message-card__photo--faces">
               <img src="assets/stephen and dad.jpeg" alt="Stephen with Mr. Owiah" loading="lazy" />
             </figure>
             <div class="message-card__body">
@@ -270,7 +280,7 @@
           </article>
 
           <article class="message-card message-card--reverse reveal">
-            <figure class="message-card__photo">
+            <figure class="message-card__photo message-card__photo--faces">
               <img src="assets/ebo and dad.jpeg" alt="Ebo with Mr. Owiah" loading="lazy" />
             </figure>
             <div class="message-card__body">
@@ -319,7 +329,7 @@
       </section>
 
       <section class="blessing">
-        <div class="blessing__ornament" aria-hidden="true">✦</div>
+        <svg class="blessing__ornament feather-icon" aria-hidden="true"><use href="#icon-star"></use></svg>
         <blockquote class="reveal">
           “May your days be filled with joy, and your life be a fulfilment of
           the Lord’s purpose for you.”
@@ -327,17 +337,17 @@
         <div class="blessing__line reveal"></div>
         <p class="blessing__from reveal">With all our love, always.</p>
         <button class="heart-button reveal" id="heartButton" type="button">
-          Send Dad some love <span aria-hidden="true">♥</span>
+          Send Dad some love <svg class="feather-icon" aria-hidden="true"><use href="#icon-heart"></use></svg>
         </button>
       </section>
     </main>
 
     <footer class="site-footer">
-      <a href="#top">Back to top ↑</a>
+      <a href="#top">Back to top <svg class="feather-icon" aria-hidden="true"><use href="#icon-arrow-up"></use></svg></a>
     </footer>
 
     <dialog class="lightbox" id="photoLightbox" aria-label="Enlarged family photograph">
-      <button class="lightbox__close" id="lightboxClose" type="button" aria-label="Close photograph">×</button>
+      <button class="lightbox__close" id="lightboxClose" type="button" aria-label="Close photograph"><svg class="feather-icon" aria-hidden="true"><use href="#icon-x"></use></svg></button>
       <img id="lightboxImage" src="" alt="" />
       <p id="lightboxCaption"></p>
     </dialog>
