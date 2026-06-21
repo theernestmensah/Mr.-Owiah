@@ -3,6 +3,127 @@ document.querySelector(".home-page .archive")?.remove();
 
 const envelopeIntro = document.querySelector("#envelopeIntro");
 const openEnvelope = document.querySelector("#openEnvelope");
+const musicBar = document.querySelector("#musicBar");
+const musicToggle = document.querySelector("#musicToggle");
+const musicToggleIcon = document.querySelector("#musicToggleIcon");
+const musicMute = document.querySelector("#musicMute");
+const musicMuteIcon = document.querySelector("#musicMuteIcon");
+const musicProgress = document.querySelector("#musicProgress");
+const musicCurrentTime = document.querySelector("#musicCurrentTime");
+const musicDuration = document.querySelector("#musicDuration");
+const youtubePlayerFrame = document.querySelector("#youtubePlayer");
+
+let gratitudePlayer;
+let musicReady = false;
+let musicShouldPlay = false;
+
+const formatMusicTime = (seconds) => {
+  const safeSeconds = Number.isFinite(seconds) ? Math.max(0, seconds) : 0;
+  const minutes = Math.floor(safeSeconds / 60);
+  const remainder = Math.floor(safeSeconds % 60);
+  return `${minutes}:${String(remainder).padStart(2, "0")}`;
+};
+
+const setMusicPlayingUI = (isPlaying) => {
+  musicToggleIcon?.setAttribute("href", isPlaying ? "#icon-pause" : "#icon-play");
+  musicToggle?.setAttribute("aria-label", isPlaying ? "Pause soundtrack" : "Play soundtrack");
+};
+
+const setMusicMutedUI = (isMuted) => {
+  musicMuteIcon?.setAttribute("href", isMuted ? "#icon-volume-x" : "#icon-volume-2");
+  musicMute?.setAttribute("aria-label", isMuted ? "Unmute soundtrack" : "Mute soundtrack");
+};
+
+const showMusicBar = () => {
+  musicBar?.classList.add("is-visible");
+  musicBar?.removeAttribute("inert");
+  musicBar?.setAttribute("aria-hidden", "false");
+};
+
+function startSoundtrack() {
+  musicShouldPlay = true;
+  showMusicBar();
+
+  if (!musicReady || !gratitudePlayer) return;
+  gratitudePlayer.unMute();
+  gratitudePlayer.setVolume(70);
+  gratitudePlayer.playVideo();
+  setMusicMutedUI(false);
+  setMusicPlayingUI(true);
+}
+
+const updateMusicProgress = () => {
+  if (!musicReady || !gratitudePlayer) return;
+  const current = gratitudePlayer.getCurrentTime() || 0;
+  const duration = gratitudePlayer.getDuration() || 170;
+
+  if (musicProgress && document.activeElement !== musicProgress) {
+    musicProgress.value = String((current / duration) * 100);
+  }
+  if (musicCurrentTime) musicCurrentTime.textContent = formatMusicTime(current);
+  if (musicDuration) musicDuration.textContent = formatMusicTime(duration);
+};
+
+if (youtubePlayerFrame) {
+  window.onYouTubeIframeAPIReady = () => {
+    gratitudePlayer = new window.YT.Player("youtubePlayer", {
+      events: {
+        onReady: (event) => {
+          musicReady = true;
+          event.target.mute();
+          event.target.playVideo();
+          setMusicMutedUI(true);
+          updateMusicProgress();
+          window.setInterval(updateMusicProgress, 500);
+
+          if (musicShouldPlay) startSoundtrack();
+        },
+        onStateChange: (event) => {
+          setMusicPlayingUI(event.data === window.YT.PlayerState.PLAYING);
+        },
+      },
+    });
+  };
+
+  const youtubeApi = document.createElement("script");
+  youtubeApi.src = "https://www.youtube.com/iframe_api";
+  youtubeApi.async = true;
+  document.head.appendChild(youtubeApi);
+}
+
+musicToggle?.addEventListener("click", () => {
+  showMusicBar();
+  if (!musicReady || !gratitudePlayer) {
+    musicShouldPlay = true;
+    return;
+  }
+
+  const isPlaying = gratitudePlayer.getPlayerState() === window.YT.PlayerState.PLAYING;
+  if (isPlaying) {
+    gratitudePlayer.pauseVideo();
+    musicShouldPlay = false;
+  } else {
+    gratitudePlayer.unMute();
+    gratitudePlayer.playVideo();
+    musicShouldPlay = true;
+    setMusicMutedUI(false);
+  }
+});
+
+musicMute?.addEventListener("click", () => {
+  if (!musicReady || !gratitudePlayer) return;
+  const isMuted = gratitudePlayer.isMuted();
+  if (isMuted) gratitudePlayer.unMute();
+  else gratitudePlayer.mute();
+  setMusicMutedUI(!isMuted);
+});
+
+musicProgress?.addEventListener("input", () => {
+  if (!musicReady || !gratitudePlayer) return;
+  const duration = gratitudePlayer.getDuration() || 0;
+  gratitudePlayer.seekTo((Number(musicProgress.value) / 100) * duration, true);
+  updateMusicProgress();
+});
 
 if (envelopeIntro && openEnvelope) {
   const reducedIntroMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -15,6 +136,7 @@ if (envelopeIntro && openEnvelope) {
     envelopeOpened = true;
     openEnvelope.disabled = true;
     envelopeIntro.classList.add("is-opening");
+    startSoundtrack();
 
     window.setTimeout(() => {
       envelopeIntro.classList.add("is-leaving");
