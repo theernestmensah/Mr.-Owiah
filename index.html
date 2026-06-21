@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A loving Father's Day celebration for Mr. Owiah, from Stephen, Shaviva, Kukua, Ebo, and Eno Serwaa."
+    />
+    <meta name="theme-color" content="#173f35" />
+    <title>Happy Father's Day, Mr. Owiah</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="home-page">
+    <div class="page-glow page-glow--one" aria-hidden="true"></div>
+    <div class="page-glow page-glow--two" aria-hidden="true"></div>
+
+    <header class="hero" id="top">
+      <nav class="nav" aria-label="Main navigation">
+        <a class="nav__link" href="#messages">Our messages</a>
+      </nav>
+
+      <div class="hero__content reveal is-visible">
+        <p class="eyebrow">A celebration of an extraordinary dad</p>
+        <h1>Happy Father’s Day,<br /><em>Mr. Owiah.</em></h1>
+        <p class="hero__intro">
+          Today, we celebrate your love, your guidance, and the quiet strength
+          that makes our family feel like home.
+        </p>
+        <a class="button" href="#messages">
+          Read our messages
+          <span aria-hidden="true">↓</span>
+        </a>
+      </div>
+
+      <div class="hero__seal reveal is-visible" aria-hidden="true">
+        <svg viewBox="0 0 220 220" role="presentation">
+          <defs>
+            <path
+              id="circlePath"
+              d="M 110,110 m -78,0 a 78,78 0 1,1 156,0 a 78,78 0 1,1 -156,0"
+            />
+          </defs>
+          <text>
+            <textPath href="#circlePath" startOffset="2%">
+              OUR MENTOR • OUR HERO • OUR DAD •
+            </textPath>
+          </text>
+        </svg>
+        <span>❤️</span>
+      </div>
+
+      <div class="hero__year" aria-hidden="true">2026</div>
+    </header>
+
+    <main>
+      <section class="gallery-portal" id="gallery-preview" aria-labelledby="galleryPortalTitle">
+        <div class="gallery-portal__arc" id="galleryArc" aria-hidden="true"></div>
+        <div class="gallery-portal__content reveal">
+          <p class="eyebrow">The Owiah family archive</p>
+          <h2 id="galleryPortalTitle">Every chapter<br /><em>lives here.</em></h2>
+          <p class="gallery-portal__intro">
+            Photographs, films, and the little moments that became a family legacy.
+          </p>
+          <a class="gallery-portal__link" href="gallery.html">
+            <span>Enter the gallery</span>
+            <span aria-hidden="true">↗</span>
+          </a>
+          <p class="gallery-portal__meta">44 photographs · 03 films · one extraordinary father</p>
+        </div>
+      </section>
+
+      <section class="portrait-section archive" id="archive" aria-label="The Owiah family archive">
+        <header class="archive__header reveal">
+          <div>
+            <p class="eyebrow">The Owiah family archive</p>
+            <h2>A life held in<br /><em>the people he loves.</em></h2>
+          </div>
+          <div class="archive__index" aria-label="Archive information">
+            <span>Family / Faith / Legacy</span>
+            <strong>ACCRA, GH</strong>
+            <small>VOL. 01 — 2026</small>
+          </div>
+        </header>
+
+        <div class="archive-lead reveal">
+          <figure class="archive-lead__hero">
+            <img
+              src="assets/WhatsApp Image 2026-06-21 at 15.45.49.jpeg"
+              alt="The Owiah family celebrating together"
+              fetchpriority="high"
+            />
+            <figcaption>
+              <span>PLATE 001</span>
+              <p>The Owiah Family<br />Accra, Ghana</p>
+            </figcaption>
+          </figure>
+
+          <div class="archive-lead__column">
+            <figure class="archive-lead__portrait">
+              <img
+                src="assets/WhatsApp Image 2026-06-21 at 15.42.19.jpeg"
+                alt="Mr. Owiah surrounded by his family"
+                loading="lazy"
+              />
+              <figcaption>Family portrait <span>Plate 002</span></figcaption>
+            </figure>
+            <figure class="archive-lead__portrait archive-lead__portrait--wide">
+              <img
+                src="assets/WhatsApp Image 2026-06-21 at 15.42.47.jpeg"
+                alt="The family celebrating a graduation together"
+                loading="lazy"
+              />
+              <figcaption>Graduation day <span>Plate 003</span></figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="archive-statement reveal" aria-label="Family values">
+          <span>Family</span><i>—</i><span>Faith</span><i>—</i><span>Legacy</span>
+        </div>
+
+        <div class="archive-contact reveal">
+          <div class="archive-contact__header">
+            <p>Selected photographs</p>
+            <p id="archiveStatus">Twelve photographs on view</p>
+          </div>
+          <div class="archive-grid" id="memoryReel" aria-label="More family photographs"></div>
+          <button class="archive-toggle" id="archiveToggle" type="button" aria-expanded="false">
+            <span>Enter the full archive</span>
+            <span aria-hidden="true">↘</span>
+          </button>
+        </div>
+
+        <section class="motion-archive reveal" aria-labelledby="motionTitle">
+          <header class="motion-archive__header">
+            <p>Motion archive <span>03 films</span></p>
+            <h3 id="motionTitle">The moments between<br />the photographs.</h3>
+          </header>
+          <div class="video-grid">
+            <figure class="video-card">
+              <video controls playsinline preload="metadata" poster="assets/family call.jpeg" aria-label="Family film one">
+                <source src="assets/WhatsApp Video 2026-06-21 at 15.46.18.mp4" type="video/mp4" />
+                Your browser does not support the video element.
+              </video>
+              <figcaption><span>FILM 01</span> A moment to remember</figcaption>
+            </figure>
+            <figure class="video-card">
+              <video controls playsinline preload="metadata" poster="assets/WhatsApp Image 2026-06-21 at 15.46.22.jpeg" aria-label="Family film two">
+                <source src="assets/WhatsApp Video 2026-06-21 at 15.46.21.mp4" type="video/mp4" />
+                Your browser does not support the video element.
+              </video>
+              <figcaption><span>FILM 02</span> One for the family album</figcaption>
+            </figure>
+            <figure class="video-card">
+              <video controls playsinline preload="metadata" poster="assets/WhatsApp Image 2026-06-21 at 15.46.24.jpeg" aria-label="Family film three">
+                <source src="assets/WhatsApp Video 2026-06-21 at 15.46.23.mp4" type="video/mp4" />
+                Your browser does not support the video element.
+              </video>
+              <figcaption><span>FILM 03</span> Love, laughter, and Dad</figcaption>
+            </figure>
+          </div>
+        </section>
+      </section>
+
+      <section class="messages" id="messages">
+        <div class="messages__heading section-heading reveal">
+          <p class="eyebrow eyebrow--light">From our hearts to yours</p>
+          <h2>Five letters for the man<br /><em>who means everything.</em></h2>
+        </div>
+
+        <div class="message-list">
+          <article class="message-card reveal">
+            <figure class="message-card__photo">
+              <img src="assets/stephen and dad.jpeg" alt="Stephen with Mr. Owiah" loading="lazy" />
+            </figure>
+            <div class="message-card__body">
+              <div class="message-card__number" aria-hidden="true">01 · STEPHEN</div>
+              <p class="message-card__opening">Happy Father’s Day!</p>
+              <p>
+                Thank you for your constant guidance, support, and encouragement
+                throughout the years. I am grateful for everything you do and
+                the impact you’ve had on my life.
+              </p>
+              <footer>
+                <span>With love,</span>
+                <strong>Stephen <span aria-label="love">❤️</span></strong>
+              </footer>
+            </div>
+          </article>
+
+          <article class="message-card message-card--reverse reveal">
+            <figure class="message-card__photo">
+              <img src="assets/viva and dad.jpeg" alt="Shaviva with Mr. Owiah" loading="lazy" />
+            </figure>
+            <div class="message-card__body">
+              <div class="message-card__number" aria-hidden="true">02 · SHAVIVA</div>
+              <p class="message-card__opening">Happy Father’s Day!</p>
+              <p>
+                Thank you for your constant love, encouragement, support, and
+                the many ways you bless our lives. Thank you for always
+                believing in me, guiding me, and being there whenever I need
+                you.
+              </p>
+              <p>
+                Your sacrifices, wisdom, generosity, and unwavering support
+                mean more to me than words can express. I am truly blessed to
+                have you as my father.
+              </p>
+              <blockquote class="message-card__verse">
+                “The righteous man walks in his integrity; his children are
+                blessed after him.”
+                <cite>— Proverbs 20:7</cite>
+              </blockquote>
+              <p>
+                May God continue to bless you with good health, happiness,
+                strength, and many more years of favour and joy.
+              </p>
+              <p>
+                I love you so much, Daddy. Happy Father’s Day!
+                <span aria-label="love">❤️</span>
+              </p>
+              <footer>
+                <span>Love always,</span>
+                <strong>Your Daughter,<br />Shaviva <span aria-label="love">❤️</span></strong>
+              </footer>
+            </div>
+          </article>
+
+          <article class="message-card reveal">
+            <figure class="message-card__photo">
+              <img src="assets/kukua and dad.jpeg" alt="Kukua with Mr. Owiah" loading="lazy" />
+            </figure>
+            <div class="message-card__body">
+              <div class="message-card__number" aria-hidden="true">03 · KUKUA</div>
+              <p class="message-card__opening">Happy Father’s Day.</p>
+              <p>
+                Thank you for being my mentor, my biggest fan, and the one I can
+                always rely on. I’m so proud to be your child, and I love you
+                more than words can express. May your days be filled with joy
+                beyond what words can express and your life be a fulfillment of
+                the LORD’s purpose for you.
+              </p>
+              <footer>
+                <span>Love you, always and forever,</span>
+                <strong>Kukua <span aria-label="love">❤️</span></strong>
+              </footer>
+            </div>
+          </article>
+
+          <article class="message-card message-card--reverse reveal">
+            <figure class="message-card__photo">
+              <img src="assets/ebo and dad.jpeg" alt="Ebo with Mr. Owiah" loading="lazy" />
+            </figure>
+            <div class="message-card__body">
+              <div class="message-card__number" aria-hidden="true">04 · EBO</div>
+              <p class="message-card__opening">Dear Daddy,</p>
+              <p>
+                I wish you a happy Father’s Day. I want to let you know that I
+                am grateful for everything you have done for me. You have been
+                a wonderful father and I am very lucky to have you as my father.
+                So thank you, and may GOD never stop showering you with
+                blessings.
+              </p>
+              <footer>
+                <span>With love,</span>
+                <strong>Ebo <span aria-label="love">❤️</span></strong>
+              </footer>
+            </div>
+          </article>
+
+          <article class="message-card reveal">
+            <figure class="message-card__photo">
+              <img src="assets/mum and dad.jpeg" alt="Eno Serwaa with Mr. Owiah" loading="lazy" />
+            </figure>
+            <div class="message-card__body">
+              <div class="message-card__number" aria-hidden="true">05 · ENO SERWAA</div>
+              <p class="message-card__opening">To my dear husband,</p>
+              <p>
+                Happy Father’s Day to a wonderful husband and an exceptional
+                father. Thank you for the love, strength, wisdom, and devotion
+                you bring to our family. Your presence has been a blessing
+                through every season, and I am grateful for the life and
+                memories we continue to share.
+              </p>
+              <p>
+                May God keep you in good health, surround you with joy, and
+                reward the love you pour into all of us. We celebrate and
+                appreciate you today and always.
+              </p>
+              <footer>
+                <span>With all my love,</span>
+                <strong>Eno Serwaa <span aria-label="love">❤️</span></strong>
+              </footer>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="blessing">
+        <div class="blessing__ornament" aria-hidden="true">✦</div>
+        <p class="eyebrow reveal">Our prayer for you</p>
+        <blockquote class="reveal">
+          “May your days be filled with joy, and your life be a fulfilment of
+          the Lord’s purpose for you.”
+        </blockquote>
+        <div class="blessing__line reveal"></div>
+        <p class="blessing__from reveal">With all our love, always.</p>
+        <button class="heart-button reveal" id="heartButton" type="button">
+          Send Dad some love <span aria-hidden="true">♥</span>
+        </button>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <a href="#top">Back to top ↑</a>
+    </footer>
+
+    <dialog class="lightbox" id="photoLightbox" aria-label="Enlarged family photograph">
+      <button class="lightbox__close" id="lightboxClose" type="button" aria-label="Close photograph">×</button>
+      <img id="lightboxImage" src="" alt="" />
+      <p id="lightboxCaption"></p>
+    </dialog>
+
+    <div class="heart-layer" id="heartLayer" aria-hidden="true"></div>
+    <script src="script.js"></script>
+  </body>
+</html>
